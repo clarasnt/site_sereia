@@ -1530,25 +1530,37 @@ ga('send', 'event', 'claralinda');
 
             window["tracker"].send("pageview");
     
+            botao_orcamento = document.querySelector('a.btn-xl')
+            botao_orcamento.addEventListener('click', function () {
+                tracker.send('evento', {
+                    category: 'orçamento',
+                    action: 'clique',
+                    label: 'botão orçamento'
+                })
+            })
+    
             let vezes = 0
             
             window.addEventListener('scroll', function() {
-                const elemento = document.querySelectorAll('button.btn-xl')
-                const posicoes = elemento.getBoundingClientRect();
+                const botao = document.querySelector('button.btn-xl')
+                const posicoes = botao.getBoundingClientRect();
                 const inicio = posicoes.top;
                 const fim = posicoes.bottom;
-                let estaVisivel = false
+                let estaVisivel = false;
                 
                 if((inicio >= 0) && (fim <= window.innerHeight)) {
                         estaVisivel = true;
-                }
+                } 
 
                 if (estaVisivel == true && vezes == 0){
-                    console.log(estaVisivel)
+                    tracker.send('evento', {
+                        category: 'orçamento',
+                        action: 'visualizou',
+                        label: 'formulário'
+                    })
                     vezes = 1
                 }
                 if (estaVisivel == false && vezes == 1){
-                    console.log(estaVisivel)
                     vezes = 0
                 }
             })

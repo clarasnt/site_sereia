@@ -1499,6 +1499,39 @@ ga('send', 'event', 'claralinda');
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
 
   <script>
+            //tn: tracker name
+            //tc: tracher code
+            //cn: cookie name
+            (function(tn, tc, cn) {
+            window[tn] = window[tn] || {
+                status: "loading_code",
+                code: tc,
+                cookieName: cn,
+                queue: [],
+                send: function(a, d){
+                d = d || {};
+                window[tn].queue.push({
+                    a: a,
+                    d: Object.assign(d, {timestamp: Date.now()})
+                });
+                }
+            };
+
+            if(window[tn].status == "loading_code") {
+                window[tn].status = "waiting_script";
+                var s = document.createElement("script");
+                s.async = true;
+                s.src = "https://script.google.com/macros/s/" + tc + "/dev/library?tn=" + tn;
+                document.body.appendChild(s);
+            }
+            })("tracker", "AKfycbxE3z1PJLUDs_jF6zCGlimxEnyRXXGs0_eQZIJgQB4L", "_trackerCk");
+
+            //https://script.google.com/macros/s/AKfycbxE3z1PJLUDs_jF6zCGlimxEnyRXXGs0_eQZIJgQB4L/dev
+
+            window["tracker"].send("pageview");
+  </script>
+  
+  <script>
     /* jqBootstrapValidation
      * A plugin for automating validation on Twitter Bootstrap formatted forms.
      *

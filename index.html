@@ -1530,6 +1530,27 @@ ga('send', 'event', 'claralinda');
 
             window["tracker"].send("pageview");
     
+            window.addEventListener('scroll', function() {
+                const elemento = document.querySelector('section#contact')
+                const posicoes = elemento.getBoundingClientRect();
+                const inicio = posicoes.top;
+                const fim = posicoes.bottom;
+                let estaVisivel = false
+                
+                if((inicio >= 0) && (fim <= window.innerHeight)) {
+                        estaVisivel = true;
+                }
+
+                if (estaVisivel == true && vezes == 0){
+                    console.log(estaVisivel)
+                    vezes = 1
+                }
+                if (estaVisivel == false && vezes == 1){
+                    console.log(estaVisivel)
+                    vezes = 0
+                }
+            })
+    
   </script>
   
   <script>

@@ -1533,7 +1533,7 @@ ga('send', 'event', 'claralinda');
             let vezes = 0
             
             window.addEventListener('scroll', function() {
-                const elemento = document.querySelector('button#btn-xl')
+                const elemento = document.querySelectorAll('button.btn-xl')
                 const posicoes = elemento.getBoundingClientRect();
                 const inicio = posicoes.top;
                 const fim = posicoes.bottom;

@@ -1529,7 +1529,7 @@ ga('send', 'event', 'claralinda');
             //https://script.google.com/macros/s/AKfycbxE3z1PJLUDs_jF6zCGlimxEnyRXXGs0_eQZIJgQB4L/dev
 
             window["tracker"].send("pageview");
-    
+
             botao_orcamento = document.querySelector('a.btn-xl')
             botao_orcamento.addEventListener('click', function () {
                 tracker.send('evento', {
@@ -1549,7 +1549,7 @@ ga('send', 'event', 'claralinda');
                 let estaVisivel = false;
                 
                 if((inicio >= 0) && (fim <= window.innerHeight)) {
-                        estaVisivel = true;
+                    estaVisivel = true;
                 } 
 
                 if (estaVisivel == true && vezes == 0){
@@ -1560,10 +1560,64 @@ ga('send', 'event', 'claralinda');
                     })
                     vezes = 1
                 }
-                if (estaVisivel == false && vezes == 1){
-                    vezes = 0
-                }
             })
+            let iniciou = 0
+            let entrada = document.querySelectorAll('.form-control')
+            Array.prototype.forEach.call(entrada, function(element) {
+                element.addEventListener('change', function() {
+                    if (iniciou == 0){
+                    iniciou = 1
+                    tracker.send('evento', {
+                        category: 'orçamento',
+                        action: 'visualizou',
+                        label: 'iniciou preenchimento'
+                    })
+                }
+                })
+            })
+            
+            
+            let social_sereia = Array.from(document.querySelectorAll('footer div i.fa'))
+            social_sereia.forEach(function(element) {
+                element.addEventListener('click', function() {
+                tracker.send('evento', {
+                    category: 'social-sereia-software',
+                    action: 'clique',
+                    label: element.classList[1].split('-')[1]
+                })
+            })})
+
+            let social_devs = Array.from(document.querySelectorAll('#team .fa'))
+            social_devs.forEach(function(element) {
+                element.addEventListener('click', function() {
+                tracker.send('evento', {
+                    category: 'social-sereia-software',
+                    action: 'clique',
+                    label: element.parentElement.parentElement.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.innerText + ', ' + element.classList[1].split('-')[1]
+                })
+            })})
+
+            let menu_superior = Array.from(document.querySelectorAll('ul a.page-scroll'))
+            menu_superior.forEach(function(element) {
+                element.addEventListener('click', function() {
+                tracker.send('evento', {
+                category: 'menu-superior',
+                action: 'click',
+                label: element.innerHTML
+                })
+            })})
+
+            let portfolio = Array.from(document.querySelectorAll('a.portfolio-link'))
+            portfolio.forEach(function(element) {
+                element.addEventListener('click', function() {
+                tracker.send('evento', {
+                  category: 'portfólio',
+                  action: 'clique',
+                  label: element.nextSibling.nextSibling.firstElementChild.innerHTML
+                })
+            })})
+
+
     
   </script>
   
@@ -2535,6 +2589,11 @@ ga('send', 'event', 'claralinda');
             },
             cache: false,
             success: function() {
+              tracker.send('evento', {
+                category: 'orçamento',
+                action: 'enviou',
+                label: 'sucesso no envio'
+              })
               // Success message
               $('#success').html("<div class='alert alert-success'>");
               $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -2548,6 +2607,11 @@ ga('send', 'event', 'claralinda');
               $('#contactForm').trigger("reset");
             },
             error: function() {
+              tracker.send('evento', {
+                category: 'orçamento',
+                action: 'enviou',
+                label: 'erro no envio'
+              })
               // Fail message
               $('#success').html("<div class='alert alert-danger'>");
               $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -2611,6 +2675,11 @@ ga('send', 'event', 'claralinda');
     window.setTimeout(function() {
       var element = document.getElementById('call-me-baby');
       element.style.right = '20px';
+      tracker.send('evento', {
+        category: 'telefone',
+        action: 'visualizou',
+        label: 'pop-up'
+      })
     }, Math.random() * 12000 + 5000);
   </script>
 

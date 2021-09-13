@@ -1530,6 +1530,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             botao_orcamento = document.querySelector('a.btn-xl')
             botao_orcamento.addEventListener('click', function () {
                 tracker.send('evento', {
+                  cd1: 'hardcoded',
                     category: 'orçamento',
                     action: 'clique',
                     label: 'botão orçamento'
@@ -1551,6 +1552,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 if (estaVisivel == true && vezes == 0){
                     tracker.send('evento', {
+                  cd1: 'hardcoded',
                         category: 'orçamento',
                         action: 'visualizou',
                         label: 'formulário'
@@ -1565,6 +1567,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     if (iniciou == 0){
                     iniciou = 1
                     tracker.send('evento', {
+                  cd1: 'hardcoded',
                         category: 'orçamento',
                         action: 'visualizou',
                         label: 'iniciou preenchimento'
@@ -1578,6 +1581,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             social_sereia.forEach(function(element) {
                 element.addEventListener('click', function() {
                 tracker.send('evento', {
+                  cd1: 'hardcoded',
                     category: 'social-sereia-software',
                     action: 'clique',
                     label: element.classList[1].split('-')[1]
@@ -1588,6 +1592,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             social_devs.forEach(function(element) {
                 element.addEventListener('click', function() {
                 tracker.send('evento', {
+                  cd1: 'hardcoded',
                     category: 'social-sereia-software',
                     action: 'clique',
                     label: element.parentElement.parentElement.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.innerText + ', ' + element.classList[1].split('-')[1]
@@ -1598,6 +1603,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             menu_superior.forEach(function(element) {
                 element.addEventListener('click', function() {
                 tracker.send('evento', {
+                  cd1: 'hardcoded',
                 category: 'menu-superior',
                 action: 'click',
                 label: element.innerHTML
@@ -1608,6 +1614,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             portfolio.forEach(function(element) {
                 element.addEventListener('click', function() {
                 tracker.send('evento', {
+                  cd1: 'hardcoded',
                   category: 'portfólio',
                   action: 'clique',
                   label: element.nextSibling.nextSibling.firstElementChild.innerHTML
@@ -2587,6 +2594,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             cache: false,
             success: function() {
               tracker.send('evento', {
+                  cd1: 'hardcoded',
                 category: 'orçamento',
                 action: 'enviou',
                 label: 'sucesso no envio'
@@ -2605,6 +2613,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             },
             error: function() {
               tracker.send('evento', {
+                  cd1: 'hardcoded',
                 category: 'orçamento',
                 action: 'enviou',
                 label: 'erro no envio'
@@ -2673,6 +2682,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var element = document.getElementById('call-me-baby');
       element.style.right = '20px';
       tracker.send('evento', {
+                  cd1: 'hardcoded',
         category: 'telefone',
         action: 'visualizou',
         label: 'pop-up'

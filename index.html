@@ -1560,24 +1560,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     vezes = 1
                 }
             })
-            let iniciou = 0
+            let iniciou = 1
             let entrada = document.querySelectorAll('.form-control')
             Array.prototype.forEach.call(entrada, function(element) {
-                element.addEventListener('change', function() {
-                    if (iniciou == 0){
-                    iniciou = 1
+                element.addEventListener('focus', function() {
+                  if (iniciou == 4 && element.value == ''){
                     tracker.send('evento', {
-                  cd1: 'hardcoded',
+                        cd1: 'hardcoded',
                         category: 'orçamento',
-                        action: 'visualizou',
-                        label: 'iniciou preenchimento'
+                        action: 'preenchimento',
+                        label: '100%'
                     })
-                }
+                  } else if (iniciou == 3 && element.value == ''){
+                    iniciou += 1
+                    tracker.send('evento', {
+                        cd1: 'hardcoded',
+                        category: 'orçamento',
+                        action: 'preenchimento',
+                        label: '75%'
+                    })
+                  } else if (iniciou == 2 && element.value == ''){
+                    iniciou += 1
+                    tracker.send('evento', {
+                        cd1: 'hardcoded',
+                        category: 'orçamento',
+                        action: 'preenchimento',
+                        label: '50%'
+                    })
+                  } else if (iniciou == 1 && element.value == ''){
+                    iniciou += 1
+                    tracker.send('evento', {
+                        cd1: 'hardcoded',
+                        category: 'orçamento',
+                        action: 'preenchimento',
+                        label: '25%'
+                    })
+                  }
                 })
             })
             
             
-            let social_sereia = Array.from(document.querySelectorAll('footer div i.fa'))
+            let social_sereia = Array.from(document.querySelectorAll('footer ul.social-buttons a'))
             social_sereia.forEach(function(element) {
                 element.addEventListener('click', function() {
                 tracker.send('evento', {
@@ -1588,7 +1611,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 })
             })})
 
-            let social_devs = Array.from(document.querySelectorAll('#team .fa'))
+            let social_devs = Array.from(document.querySelectorAll('#team ul.social-buttons a'))
             social_devs.forEach(function(element) {
                 element.addEventListener('click', function() {
                 tracker.send('evento', {

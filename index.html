@@ -1561,40 +1561,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 }
             })
             let iniciou = 1
+            let idsjaforam = ''
             let entrada = document.querySelectorAll('.form-control')
             Array.prototype.forEach.call(entrada, function(element) {
-                var valor = element.value
                 element.addEventListener('change', function() {
-                  if (iniciou == 4 && valor == ''){
+                  if (iniciou == 4 && idsjaforam.includes(element.id) == false){
+                    idsjaforam += element.id + ' '
                     tracker.send('evento', {
                         cd1: 'hardcoded',
                         category: 'orçamento',
                         action: 'preenchimento',
-                        label: '100%'
+                        label: '100'
                     })
-                  } else if (iniciou == 3 && valor == ''){
+                  } else if (iniciou == 3 && idsjaforam.includes(element.id) == false){
                     iniciou += 1
+                    idsjaforam += element.id + ' '
                     tracker.send('evento', {
                         cd1: 'hardcoded',
                         category: 'orçamento',
                         action: 'preenchimento',
-                        label: '75%'
+                        label: '75'
                     })
-                  } else if (iniciou == 2 && valor == ''){
+                  } else if (iniciou == 2 && idsjaforam.includes(element.id) == false){
                     iniciou += 1
+                    idsjaforam += element.id + ' '
                     tracker.send('evento', {
                         cd1: 'hardcoded',
                         category: 'orçamento',
                         action: 'preenchimento',
-                        label: '50%'
+                        label: '50'
                     })
-                  } else if (iniciou == 1 && valor == ''){
+                  } else if (iniciou == 1 && idsjaforam.includes(element.id) == false){
                     iniciou += 1
+                    idsjaforam += element.id + ' '
                     tracker.send('evento', {
                         cd1: 'hardcoded',
                         category: 'orçamento',
                         action: 'preenchimento',
-                        label: '25%'
+                        label: '25'
                     })
                   }
                 })

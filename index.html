@@ -1563,15 +1563,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             let iniciou = 1
             let entrada = document.querySelectorAll('.form-control')
             Array.prototype.forEach.call(entrada, function(element) {
-                element.addEventListener('focus', function() {
-                  if (iniciou == 4 && element.value == ''){
+                var valor = element.value
+                element.addEventListener('change', function() {
+                  if (iniciou == 4 && valor == ''){
                     tracker.send('evento', {
                         cd1: 'hardcoded',
                         category: 'orçamento',
                         action: 'preenchimento',
                         label: '100%'
                     })
-                  } else if (iniciou == 3 && element.value == ''){
+                  } else if (iniciou == 3 && valor == ''){
                     iniciou += 1
                     tracker.send('evento', {
                         cd1: 'hardcoded',
@@ -1579,7 +1580,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         action: 'preenchimento',
                         label: '75%'
                     })
-                  } else if (iniciou == 2 && element.value == ''){
+                  } else if (iniciou == 2 && valor == ''){
                     iniciou += 1
                     tracker.send('evento', {
                         cd1: 'hardcoded',
@@ -1587,7 +1588,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         action: 'preenchimento',
                         label: '50%'
                     })
-                  } else if (iniciou == 1 && element.value == ''){
+                  } else if (iniciou == 1 && valor == ''){
                     iniciou += 1
                     tracker.send('evento', {
                         cd1: 'hardcoded',
